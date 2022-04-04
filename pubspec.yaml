@@ -12,6 +12,7 @@ dependencies:
   velocity_x: 3.4.0
   get_storage: 2.0.3
   animated_icon_button: 1.0.2
+  shimmer: 2.0.0
   flutter:
     sdk: flutter
 

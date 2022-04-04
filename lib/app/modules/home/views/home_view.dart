@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:pokebag_mobile/app/data/model/nav_args_model.dart';
+import 'package:pokebag_mobile/app/routes/app_pages.dart';
 import 'package:pokebag_mobile/core/constant/const.dart';
 import 'package:pokebag_mobile/core/cosmetics/colors.dart';
 import 'package:pokebag_mobile/core/cosmetics/spacing.dart';
@@ -37,9 +39,14 @@ class HomeView extends GetView<HomeController> {
                       shape: RoundedRectangleBorder(
                           borderRadius: AppSpacing.allRadius),
                       child: InkWell(
-                        onTap: () {
-                          print(item.name);
-                        },
+                        onTap: () => Get.toNamed(
+                          Routes.DETAIL,
+                          arguments: NavArgsModel(
+                            from: Routes.HOME,
+                            to: Routes.DETAIL,
+                            data: item,
+                          ),
+                        ),
                         child: Container(
                           padding: AppSpacing.paddingAllMain,
                           child: Column(

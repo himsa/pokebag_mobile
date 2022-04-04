@@ -13,6 +13,9 @@ dependencies:
   get_storage: 2.0.3
   animated_icon_button: 1.0.2
   shimmer: 2.0.0
+  chance:
+    git:
+      url: https://github.com/myConsciousness/chance.git
   flutter:
     sdk: flutter
 

@@ -19,9 +19,8 @@ class HomeController extends GetxController {
 
   @override
   void onInit() {
-    isDark.value =
-        GetStorageManager.getStorage.read(GetStorageManager.darkmode) ??
-            Get.isPlatformDarkMode;
+    isDark.value = GetStorageManager().getValue(GetStorageManager.darkmode) ??
+        Get.isPlatformDarkMode;
     if (isDark.value) {
       initialIcon.value = 0;
     } else {
@@ -36,7 +35,7 @@ class HomeController extends GetxController {
 
   void changeTheme(bool val) {
     Get.changeThemeMode(val ? ThemeMode.dark : ThemeMode.light);
-    GetStorageManager.getStorage.write(GetStorageManager.darkmode, val);
+    GetStorageManager().putValue(GetStorageManager.darkmode, val);
     isDark.value = val;
   }
 

@@ -4,9 +4,8 @@ import 'package:pokebag_mobile/core/local/get_storage.dart';
 
 class AppTheme {
   ThemeMode config() {
-    bool isDark =
-        GetStorageManager.getStorage.read(GetStorageManager.darkmode) ??
-            Get.isPlatformDarkMode;
+    bool isDark = GetStorageManager().getValue(GetStorageManager.darkmode) ??
+        Get.isPlatformDarkMode;
     if (isDark) {
       return ThemeMode.dark;
     }

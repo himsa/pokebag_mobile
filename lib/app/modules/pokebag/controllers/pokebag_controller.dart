@@ -1,9 +1,13 @@
+import 'package:chance/chance.dart';
 import 'package:get/get.dart';
 
 class PokebagController extends GetxController {
-  //TODO: Implement PokebagController
+  int randomInteger = Chance.integer(min: 3, max: 12); // 5
 
-  final count = 0.obs;
+  double randomDouble = Chance.floating(min: 3, max: 12); // 10.9634128828224
+
+  bool randomBool = Chance.boolean(likelihood: 30); // false
+
   @override
   void onInit() {
     super.onInit();
@@ -16,5 +20,4 @@ class PokebagController extends GetxController {
 
   @override
   void onClose() {}
-  void increment() => count.value++;
 }

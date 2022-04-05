@@ -15,6 +15,16 @@ class PokebagView extends GetView<PokebagController> {
       appBar: AppBar(
         title: Text('PokebagView'),
         centerTitle: true,
+        actions: [
+          IconButton(
+            icon: Card(
+              child: Icon(Icons.clear),
+            ),
+            onPressed: () {
+              GetStorageManager().removeKey(GetStorageManager.pokebagKey);
+            },
+          ),
+        ],
       ),
       body: Obx(
         () => controller.isPokeBagListLoading.value
@@ -24,9 +34,7 @@ class PokebagView extends GetView<PokebagController> {
                     ? Wrap(
                         spacing: AppSpacing.small,
                         children: controller.list.map((item) {
-                          // get index
-                          var index = controller.list.indexOf(item);
-                          return PokeBagItemList(item, index);
+                          return PokeBagItemList(item);
                         }).toList(),
                       )
                     : SizedBox()),

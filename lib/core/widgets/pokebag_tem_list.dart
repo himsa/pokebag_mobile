@@ -11,11 +11,12 @@ import 'package:pokebag_mobile/core/widgets/spacer.dart';
 
 class PokeBagItemList extends GetView<PokebagController> {
   final PokeBagModel? item;
-  final int? index;
-  PokeBagItemList(this.item, this.index);
+  PokeBagItemList(this.item);
 
   @override
   Widget build(BuildContext context) {
+    var uri = Uri.dataFromString(item?.url ?? '');
+    var id = uri.pathSegments[6];
     return Card(
       shape: RoundedRectangleBorder(borderRadius: AppSpacing.allRadius),
       child: InkWell(
@@ -52,7 +53,7 @@ class PokeBagItemList extends GetView<PokebagController> {
                 ],
               ),
               Image.network(
-                '${Const.imageURL}${(index ?? 0) + 1}.png',
+                '${Const.imageURL}$id.png',
                 height: 100,
                 width: 100,
                 fit: BoxFit.cover,

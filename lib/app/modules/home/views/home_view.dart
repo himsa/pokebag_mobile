@@ -31,7 +31,7 @@ class HomeView extends GetView<HomeController> {
                   padding: AppSpacing.paddingAllMain,
                   itemBuilder: (context, index) {
                     var item = controller.homeListModel.value!.results![index];
-                    return HomeItemList(item, index);
+                    return HomeItemList(item);
                   },
                   separatorBuilder: (context, index) {
                     return AppSizedBox.heightSmall();

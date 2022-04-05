@@ -34,21 +34,6 @@ class PokebagController extends GetxController {
   @override
   void onClose() {}
 
-  saveList(List<PokeBagModel> listNeedToSave) {
-    String? oldSavedData =
-        GetStorageManager().readList(GetStorageManager.pokebagKey);
-
-    if (oldSavedData != null) {
-      List<PokeBagModel> oldSavedList = jsonDecode(oldSavedData);
-      oldSavedList.addAll(listNeedToSave);
-      return GetStorageManager()
-          .saveList(GetStorageManager.pokebagKey, oldSavedList);
-    } else {
-      return GetStorageManager()
-          .saveList(GetStorageManager.pokebagKey, listNeedToSave);
-    }
-  }
-
   removeItem(PokeBagModel itemToDelete) {
     if (list.isNotEmpty) {
       list.removeWhere((element) => element == itemToDelete);
@@ -60,11 +45,13 @@ class PokebagController extends GetxController {
 
   void _initLocalData() {
     isPokeBagListLoading(true);
-    debugPrint(readList());
-    list = RxList<PokeBagModel>();
-    jsonDecode(readList()).forEach((v) {
-      list.add(PokeBagModel.fromJson(v));
-    });
+    if (readList() != null) {
+      debugPrint(readList());
+      list = RxList<PokeBagModel>();
+      jsonDecode(readList()).forEach((v) {
+        list.add(PokeBagModel.fromJson(v));
+      });
+    }
     isPokeBagListLoading(false);
   }
 }

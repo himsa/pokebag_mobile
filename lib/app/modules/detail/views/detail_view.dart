@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pokebag_mobile/app/data/model/pokebag_model.dart';
 import 'package:pokebag_mobile/app/routes/app_pages.dart';
-import 'package:pokebag_mobile/core/constant/const.dart';
 import 'package:pokebag_mobile/core/cosmetics/colors.dart';
 import 'package:pokebag_mobile/core/cosmetics/spacing.dart';
 import 'package:pokebag_mobile/core/cosmetics/typography.dart';
@@ -45,7 +44,7 @@ class DetailView extends GetView<DetailController> {
             url: controller.data?.url ?? '',
             username: 'test',
           );
-          GetStorageManager().saveList(GetStorageManager.pokebagKey, [data]);
+          controller.saveList([data]);
         },
       ),
       floatingActionButtonLocation:
@@ -114,6 +113,24 @@ class DetailView extends GetView<DetailController> {
                   ],
                 ),
               ),
+      ),
+    );
+  }
+}
+
+class AnimatedLogo extends AnimatedWidget {
+  const AnimatedLogo({Key? key, required Animation<double> animation})
+      : super(key: key, listenable: animation);
+
+  @override
+  Widget build(BuildContext context) {
+    final animation = listenable as Animation<double>;
+    return Center(
+      child: Container(
+        margin: const EdgeInsets.symmetric(vertical: 10),
+        height: animation.value,
+        width: animation.value,
+        child: const FlutterLogo(),
       ),
     );
   }

@@ -9,12 +9,12 @@ import 'package:pokebag_mobile/core/cosmetics/typography.dart';
 
 class HomeItemList extends StatelessWidget {
   final Results? item;
-  final int? index;
-  HomeItemList(this.item, this.index);
+  HomeItemList(this.item);
 
   @override
   Widget build(BuildContext context) {
-    debugPrint('${Const.imageURL}${(index ?? 0) + 1}.png');
+    var uri = Uri.dataFromString(item?.url ?? '');
+    var id = uri.pathSegments[6];
     return Card(
       child: InkWell(
         onTap: () => Get.toNamed(
@@ -37,7 +37,7 @@ class HomeItemList extends StatelessWidget {
                 ],
               ),
               Image.network(
-                '${Const.imageURL}${(index ?? 0) + 1}.png',
+                '${Const.imageURL}$id.png',
                 height: 100,
                 width: 100,
                 fit: BoxFit.cover,

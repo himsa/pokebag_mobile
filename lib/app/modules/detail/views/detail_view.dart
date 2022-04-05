@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:pokebag_mobile/app/data/model/pokebag_model.dart';
+import 'package:pokebag_mobile/app/routes/app_pages.dart';
 import 'package:pokebag_mobile/core/constant/const.dart';
 import 'package:pokebag_mobile/core/cosmetics/colors.dart';
 import 'package:pokebag_mobile/core/cosmetics/spacing.dart';
 import 'package:pokebag_mobile/core/cosmetics/typography.dart';
+import 'package:pokebag_mobile/core/local/get_storage.dart';
 import 'package:pokebag_mobile/core/widgets/chip.dart';
 import 'package:pokebag_mobile/core/widgets/list_loading.dart';
 import 'package:pokebag_mobile/core/widgets/spacer.dart';
@@ -20,7 +23,33 @@ class DetailView extends GetView<DetailController> {
           controller.data?.name?.capitalizeFirst ?? '',
         ),
         centerTitle: false,
+        actions: [
+          IconButton(
+            icon: Card(
+              child: Icon(Icons.abc),
+            ),
+            onPressed: () {
+              Get.toNamed(Routes.POKEBAG);
+            },
+          ),
+        ],
       ),
+      floatingActionButton: IconButton(
+        icon: Card(
+          child: Icon(Icons.abc),
+        ),
+        onPressed: () {
+          debugPrint('Tapped!!');
+          var data = PokeBagModel(
+            name: controller.data?.name ?? '',
+            url: controller.data?.url ?? '',
+            username: 'test',
+          );
+          GetStorageManager().saveList(GetStorageManager.pokebagKey, [data]);
+        },
+      ),
+      floatingActionButtonLocation:
+          FloatingActionButtonLocation.miniCenterFloat,
       body: Obx(
         () => controller.isDetailLoading.value
             ? ShimmerListLoadingWidget()

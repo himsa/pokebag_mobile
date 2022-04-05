@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pokebag_mobile/app/data/model/detail_model.dart';
 import 'package:pokebag_mobile/app/data/model/home_list_model.dart';
@@ -35,7 +36,7 @@ class DetailController extends GetxController {
       final response = await provider.detail(data?.name);
       detailModel.value = response;
     } catch (err) {
-      print("Detail err $err");
+      debugPrint("Detail err $err");
     }
     isDetailLoading(false);
   }

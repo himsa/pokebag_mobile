@@ -69,7 +69,7 @@ class ApiClient {
           statusMessage = "No data received";
           statusCode = 408;
         } else {
-          print(e.toString());
+          debugPrint(e.toString());
           statusMessage = "Slow internet connection";
           ipAddressGlobal = '';
         }

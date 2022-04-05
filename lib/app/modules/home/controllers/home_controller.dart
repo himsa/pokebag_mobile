@@ -46,7 +46,7 @@ class HomeController extends GetxController {
       final response = await provider.homePageList();
       homeListModel.value = response;
     } catch (err) {
-      print("Home err $err");
+      debugPrint("Home err $err");
     }
     isHomeListLoading(false);
   }

@@ -17,11 +17,10 @@ class PokebagView extends GetView<PokebagController> {
         centerTitle: true,
         actions: [
           IconButton(
-            icon: Card(
-              child: Icon(Icons.clear),
-            ),
+            icon: Icon(Icons.cleaning_services_rounded),
             onPressed: () {
               GetStorageManager().removeKey(GetStorageManager.pokebagKey);
+              controller.initLocalData();
             },
           ),
         ],

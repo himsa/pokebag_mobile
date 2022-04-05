@@ -6,8 +6,10 @@ import 'package:pokebag_mobile/app/routes/app_pages.dart';
 import 'package:pokebag_mobile/core/cosmetics/colors.dart';
 import 'package:pokebag_mobile/core/cosmetics/spacing.dart';
 import 'package:pokebag_mobile/core/cosmetics/typography.dart';
-import 'package:pokebag_mobile/core/local/get_storage.dart';
 import 'package:pokebag_mobile/core/widgets/chip.dart';
+import 'package:pokebag_mobile/core/widgets/fade_widget.dart';
+import 'package:pokebag_mobile/core/widgets/icon/app_icon.dart';
+import 'package:pokebag_mobile/core/widgets/icon/app_icon_path.dart';
 import 'package:pokebag_mobile/core/widgets/list_loading.dart';
 import 'package:pokebag_mobile/core/widgets/spacer.dart';
 
@@ -24,27 +26,22 @@ class DetailView extends GetView<DetailController> {
         centerTitle: false,
         actions: [
           IconButton(
-            icon: Card(
-              child: Icon(Icons.abc),
-            ),
+            icon: Icon(Icons.desktop_mac_outlined),
             onPressed: () {
               Get.toNamed(Routes.POKEBAG);
             },
           ),
         ],
       ),
-      floatingActionButton: IconButton(
-        icon: Card(
-          child: Icon(Icons.abc),
+      floatingActionButton: InkWell(
+        child: FadeWidget(
+          child: AppIcon(
+            AppIconsPath.imagesIcon.pokeball,
+            size: 60,
+          ),
         ),
-        onPressed: () {
-          debugPrint('Tapped!!');
-          var data = PokeBagModel(
-            name: controller.data?.name ?? '',
-            url: controller.data?.url ?? '',
-            username: 'test',
-          );
-          controller.saveList([data]);
+        onTap: () {
+          controller.capture();
         },
       ),
       floatingActionButtonLocation:
